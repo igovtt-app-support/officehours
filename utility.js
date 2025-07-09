@@ -26,7 +26,7 @@ function isAfterHours() {
 
 
 
-
+module.exports = subtractHours;
 // module.exports = isWeekend;
 // module.exports = isAfterHours;
 

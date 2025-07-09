@@ -21,6 +21,7 @@ app.get('/', (req, res) => {
 app.post('/', (req, res) => {
     
     // custom modules:
+    const subtractHours = require('./utility');
     //const isWeekend = require('./utility');
     //const isAfterHours = require('./utility');
     //
@@ -45,7 +46,7 @@ app.post('/', (req, res) => {
     // }
 
     // isWeekend if Saturday (6) or Sunday (0)
-    var dateDOW = new Date();
+    var dateDOW = subtractHours(new Date(), 4);
     var intDayOfWeek = dateDOW.getDay();
     console.log('Day:');
     console.log(intDayOfWeek);
@@ -61,7 +62,7 @@ app.post('/', (req, res) => {
     // }
 
     // isAfterHours if Hour < 8 or Hour >= 16
-    var dateAH = new Date();
+    var dateAH = subtractHours(new Date(), 4);
     var intHour = dateAH.getHours();
     console.log('Hour:');
     console.log(intHour);
