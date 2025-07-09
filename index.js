@@ -66,4 +66,4 @@ app.post('/', (req, res) => {
 //
 
 // last line of code:
-app.listen(443, () => console.log('[ChatBot] Webhook is listening on port 443'));
+app.listen(80, () => console.log('[ChatBot] Webhook is listening on port 80'));
