@@ -6,7 +6,7 @@ const app = express().use(bodyParser.json());   // creates http server
 const token = 'M92d-M4FC55PufZ8erQOdLUUI!hx?rBU2qprZH=TmDafn7Mz';
 
 // custom modules:
-const { isWeekend, isAfterHours } = require('./utility');
+const { isWeekend, isAfterHours, isPublicHoliday } = require('./utility');
 //
 
 process.env.TZ = 'Etc/GMT';   // set default node.js timezone to UTC+0
@@ -59,6 +59,9 @@ app.post('/', (req, res) => {
 
 
     // check for holiday:
+    if (isPublicHoliday(date)) {
+        isOfficeHours = "0";
+    }
     //
 
     
