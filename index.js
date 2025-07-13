@@ -5,6 +5,12 @@ const bodyParser = require('body-parser');
 const app = express().use(bodyParser.json());   // creates http server
 const token = 'M92d-M4FC55PufZ8erQOdLUUI!hx?rBU2qprZH=TmDafn7Mz';
 
+// custom modules:
+const { isWeekend, isAfterHours } = require('./utility');
+//
+
+process.env.TZ = 'Etc/GMT';   // set default node.js timezone to UTC+0
+
 // webhook check:
 app.get('/', (req, res) => {
     // check if verification token is correct
@@ -19,62 +25,43 @@ app.get('/', (req, res) => {
 
 // webhook endpoint:
 app.post('/', (req, res) => {
-    
-    // custom modules:
-    const subtractHours = require('./utility');
-    //const isWeekend = require('./utility');
-    //const isAfterHours = require('./utility');
-    //
 
     // check if verification token is correct
     if (req.query.token !== token) {
         return res.sendStatus(401); // if not, return unauthorized error
     }
+    //
 
-    // check for favicon
-    if (req.url?.endsWith("favicon.ico")) {
-        return res.sendStatus(404);
-    }
+    const date = new Date();
+    console.log(`Date (UTC): ${date.toString()}`);
+
+    date.setHours(date.getHours() - 4);
+    console.log(`Date (AST): ${date.toString()}`);
+
 
     // initialize office hours status value
     var isOfficeHours = "1";
     //
 
-    // check for weekend:
-    // if (isWeekend()) {
-    //    isOfficeHours = "0";
-    // }
 
-    // isWeekend if Saturday (6) or Sunday (0)
-    var dateDOW = subtractHours(new Date(), 4);
-    var intDayOfWeek = dateDOW.getDay();
-    console.log('Day:');
-    console.log(intDayOfWeek);
-    if ((intDayOfWeek === 6) || (intDayOfWeek === 0)) {
+    // check for weekend:
+    if (isWeekend(date)) {
         isOfficeHours = "0";
     }
-
     //
+
 
     // check for after-hours:
-    // if (isAfterHours()) {
-    //    isOfficeHours = "0";
-    // }
-
-    // isAfterHours if Hour < 8 or Hour >= 16
-    var dateAH = subtractHours(new Date(), 4);
-    var intHour = dateAH.getHours();
-    console.log('Hour:');
-    console.log(intHour);
-    if ((intHour < 8) || (intHour >= 16)) {
+    if (isAfterHours(date)) {
         isOfficeHours = "0";
     }
-    
     //
+
 
     // check for holiday:
     //
 
+    
     // return response
     const data = {
         attributes: {

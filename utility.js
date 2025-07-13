@@ -1,32 +1,25 @@
-function subtractHours(date, hours) {
-    date.setHours(date.getHours() - hours);
-    return date;
-}
-
-
-function isWeekend() {
+function isWeekend(prmDate) {
     // isWeekend if Saturday (6) or Sunday (0)
-    var date = new Date();
+    var date = new Date(prmDate);
     var intDayOfWeek = date.getDay();
-    console.log('Day:');
-    console.log(intDayOfWeek);
+    console.log(`Day (AST): ${intDayOfWeek}`);
     return (intDayOfWeek === 6) || (intDayOfWeek === 0);
 }
 
 
-function isAfterHours() {
+function isAfterHours(prmDate) {
     // isAfterHours if Hour < 8 or Hour >= 16
-    var date = new Date();
+    var date = new Date(prmDate);
     var intHour = date.getHours();
-    console.log('Hour:');
-    console.log(intHour);
-    return ((intHour < 8) || (intHour >= 16));
+    console.log(`Hour (AST): ${intHour}`);
+    return (intHour < 8) || (intHour >= 16);
 }
 
 
 
-
-module.exports = subtractHours;
-// module.exports = isWeekend;
-// module.exports = isAfterHours;
-
+// Export as an object:
+module.exports = {
+    isWeekend,
+    isAfterHours
+}
+//
