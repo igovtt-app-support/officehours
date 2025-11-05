@@ -77,4 +77,4 @@ app.post('/', (req, res) => {
 //
 
 // last line of code:
-app.listen(3000, () => console.log('[ChatBot] Webhook is listening on port 3000'));
+app.listen(443, () => console.log('[ChatBot] Webhook is listening on port 443'));
