@@ -18,22 +18,24 @@ function isAfterHours(prmDate) {
 
 // List of public holidays in YYYY-MM-DD format
 const publicHolidays = [
-  '2025-01-01', // New Year's Day
-  '2025-03-03', // Carnival Monday
-  '2025-03-04', // Carnival Tuesday
-  '2025-03-30', // Spiritual Baptist Liberation Day
-  '2025-03-31', // Eid ul-Fitr
-  '2025-04-18', // Good Friday
-  '2025-04-21', // Easter Monday
-  '2025-05-30', // Indian Arrival Day
-  '2025-06-19', // Corpus Christi
-  '2025-06-20', // Labour Day
-  '2025-08-01', // African Emancipation Day
-  '2025-09-01', // Independence Day (Observed)
-  '2025-09-24', // Republic Day
-  '2025-10-20', // Divali
-  '2025-12-25', // Christmas Day
-  '2025-12-26', // Boxing Day
+  '2025-12-25', // Christmas Day (2025)
+  '2025-12-26', // Boxing Day (2025)
+  '2026-01-01', // New Year's Day
+  '2026-02-16', // Carnival Monday
+  '2026-02-17', // Carnival Tuesday
+  '2026-03-20', // Eid ul-Fitr
+  '2026-03-30', // Spiritual Baptist Liberation Day
+  '2026-04-03', // Good Friday
+  '2026-04-06', // Easter Monday
+  '2026-05-30', // Indian Arrival Day
+  '2026-06-04', // Corpus Christi
+  '2026-06-19', // Labour Day
+  '2026-08-01', // African Emancipation Day
+  '2026-08-31', // Independence Day
+  '2026-09-24', // Republic Day
+  '2026-11-09', // Divali (observed)
+  '2026-12-25', // Christmas Day
+  '2026-12-26', // Boxing Day
 ];
 
 function isPublicHoliday(date) {
